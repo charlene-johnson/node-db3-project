@@ -20,15 +20,24 @@ function findSteps(id) {
 }
 
 function add(scheme) {
-
+    return db("schemes")
+    .insert(scheme)
+    .then(ids => {
+        return findById(ids[0])
+    })
 }
 
 function update(changes, id) {
-
+    return db("schemes")
+    .update(changes)
+    .where("id", id)
 }
 
 function remove(id) {
-
+    return db("schemes")
+    .where("id", id)
+    .del()
+    
 }
 
 module.exports = {
